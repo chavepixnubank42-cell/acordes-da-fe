@@ -35,7 +35,7 @@ export default function SongPage({ params }: { params: { slug: string } }) {
   const percentage = progressPercentage(progress);
 
   // A etapa "atual" é a primeira ainda não concluída.
-  const currentIndex = steps.findIndex((s) => !progress?.steps[s.key]);
+  const currentIndex = steps.findIndex((s) => !progress?.steps?.[s.key]);
 
   function stepHref(key: (typeof steps)[number]["key"]): string | undefined {
     if (key === "chords" && song.chordsUsed[0]) {
@@ -99,7 +99,7 @@ export default function SongPage({ params }: { params: { slug: string } }) {
       <p className="mb-3 text-[13px] font-bold text-ink-soft">Trilha de aprendizado</p>
       <div className="flex flex-col gap-2.5">
         {steps.map((step, index) => {
-          const done = progress?.steps[step.key] ?? false;
+          const done = progress?.steps?.[step.key] ?? false;
           const isCurrent = index === currentIndex;
 
           return (

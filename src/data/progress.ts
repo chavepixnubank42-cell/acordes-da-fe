@@ -8,35 +8,15 @@ import { SongProgress, UserStats } from "@/types";
  */
 export const LOCAL_USER_ID = "usuario-local";
 
-export const songProgress: SongProgress[] = [
-  {
-    userId: LOCAL_USER_ID,
-    songId: "maranata",
-    steps: { chords: true, chordChanges: true, rhythm: true, slowPractice: true, fullSong: false },
-  },
-  {
-    userId: LOCAL_USER_ID,
-    songId: "oceanos",
-    steps: { chords: true, chordChanges: true, rhythm: false, slowPractice: false, fullSong: false },
-  },
-  {
-    userId: LOCAL_USER_ID,
-    songId: "ousado-amor",
-    steps: { chords: true, chordChanges: true, rhythm: true, slowPractice: true, fullSong: true },
-  },
-  {
-    userId: LOCAL_USER_ID,
-    songId: "bondade-de-deus",
-    steps: { chords: true, chordChanges: false, rhythm: false, slowPractice: false, fullSong: false },
-  },
-];
+// Nenhum progresso de exemplo — todo mundo começa do zero.
+export const songProgress: SongProgress[] = [];
 
 export const userStats: UserStats = {
   userId: LOCAL_USER_ID,
-  chordsLearned: 8,
-  songsStudied: 4,
-  rhythmsPracticed: 3,
-  practiceDaysStreak: 12,
+  chordsLearned: 0,
+  songsStudied: 0,
+  rhythmsPracticed: 0,
+  practiceDaysStreak: 0,
 };
 
 export function getSongProgress(songId: string): SongProgress | undefined {
