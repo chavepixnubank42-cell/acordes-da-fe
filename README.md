@@ -47,6 +47,28 @@ persiste** as alterações — ao salvar, ele só mostra o objeto pronto para se
 gravado (visível também no console do navegador). Isso é intencional: a tela
 já está pronta para ser ligada a uma API assim que o banco de dados existir.
 
+## PWA (instalar como app)
+
+O projeto já está configurado como Progressive Web App:
+
+- `public/manifest.webmanifest` — nome, cores e ícones do app.
+- `public/sw.js` — service worker simples (cacheia as telas principais para
+  funcionar offline depois da primeira visita; sempre busca a versão mais
+  nova quando há internet).
+- `public/icon-192.png`, `icon-512.png`, `maskable-icon-512.png`,
+  `apple-touch-icon.png` — ícones já gerados com a identidade do app.
+
+**Para instalar no celular**, depois do deploy na Vercel:
+
+- **Android (Chrome):** abra o link do app → menu (⋮) → "Adicionar à tela
+  inicial" / "Instalar app". Some vezes o Chrome mostra um banner de
+  instalação automaticamente.
+- **iPhone (Safari):** abra o link → botão de compartilhar (□↑) →
+  "Adicionar à Tela de Início".
+
+Em ambos, o app abre em tela cheia, com ícone próprio, sem a barra do
+navegador — como um app instalado de verdade.
+
 ## Deploy
 
 O projeto está pronto para deploy direto na [Vercel](https://vercel.com) a

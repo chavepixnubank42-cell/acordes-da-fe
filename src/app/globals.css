@@ -36,3 +36,10 @@ body {
   background: var(--bg-page);
   color: var(--text-main);
 }
+
+/* Evita que o conteúdo fique atrás do notch/barra de status quando o app
+   roda em modo "standalone" (instalado como PWA na tela de início). */
+body {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
