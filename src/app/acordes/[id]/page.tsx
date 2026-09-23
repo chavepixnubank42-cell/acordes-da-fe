@@ -3,6 +3,7 @@ import Link from "next/link";
 import { chords, getChordById } from "@/data/chords";
 import { getAllSongs } from "@/data/songs";
 import ChordDiagram from "@/components/ChordDiagram";
+import { Chord } from "@/types";
 
 export function generateStaticParams() {
   return chords.map((c) => ({ id: c.id }));
@@ -16,8 +17,11 @@ const fingerNames: Record<number, string> = {
 };
 
 export default function ChordPage({ params }: { params: { id: string } }) {
-  const chord = getChordById(params.id);
-  if (!chord) notFound();
+  const maybeChord = getChordById(params.id);
+  if (!maybeChord) notFound();
+  // Ver comentário equivalente em musicas/[slug]/page.tsx: funções/callbacks
+  // aninhados abaixo não herdam o estreitamento de tipo do "if" acima.
+  const chord: Chord = maybeChord;
 
   const songsWithChord = getAllSongs().filter((s) => s.chordsUsed.includes(chord.id));
 

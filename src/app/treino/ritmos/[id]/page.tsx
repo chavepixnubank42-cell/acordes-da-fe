@@ -3,14 +3,16 @@ import Link from "next/link";
 import { rhythms, getRhythmById } from "@/data/rhythms";
 import { getAllSongs } from "@/data/songs";
 import RhythmPractice from "@/components/RhythmPractice";
+import { Rhythm } from "@/types";
 
 export function generateStaticParams() {
   return rhythms.map((r) => ({ id: r.id }));
 }
 
 export default function RhythmPage({ params }: { params: { id: string } }) {
-  const rhythm = getRhythmById(params.id);
-  if (!rhythm) notFound();
+  const maybeRhythm = getRhythmById(params.id);
+  if (!maybeRhythm) notFound();
+  const rhythm: Rhythm = maybeRhythm;
 
   const songsWithRhythm = getAllSongs().filter((s) => s.rhythm === rhythm.id);
 

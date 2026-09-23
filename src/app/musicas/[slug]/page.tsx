@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllSongs, getSongBySlug } from "@/data/songs";
 import { getSongProgress, progressPercentage } from "@/data/progress";
 import ProgressBar from "@/components/ProgressBar";
+import { Song } from "@/types";
 
 export function generateStaticParams() {
   return getAllSongs().map((song) => ({ slug: song.slug }));
@@ -23,8 +24,12 @@ const steps = [
 ];
 
 export default function SongPage({ params }: { params: { slug: string } }) {
-  const song = getSongBySlug(params.slug);
-  if (!song) notFound();
+  const maybeSong = getSongBySlug(params.slug);
+  if (!maybeSong) notFound();
+  // Guarda uma referência com tipo explícito (não uma união com undefined):
+  // funções aninhadas abaixo (como stepHref) não herdam o estreitamento de
+  // tipo que o "if" acima garante, então precisam de uma variável já tipada.
+  const song: Song = maybeSong;
 
   const progress = getSongProgress(song.id);
   const percentage = progressPercentage(progress);
